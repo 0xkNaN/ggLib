@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 12:53:45
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-11 15:12:06
+ * @Last Modified time: 2024-02-11 15:51:08
  */
 
 #include <iostream>
@@ -19,9 +19,9 @@ bool g_bRunning = false;
 
 int main()
 {
-  Game *game = new Game();
+  Game *game = new Game("Demo Game using ggLib", WINW, WINH);
 
-  game->init("Demo Game using ggLib", WINW, WINH);
+  game->init();
   if (!game->running())
   {
     std::cout << "SDL Error ::" << SDL_GetError() << std::endl;

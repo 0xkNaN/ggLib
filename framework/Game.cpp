@@ -2,16 +2,23 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:08
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-11 15:07:30
+ * @Last Modified time: 2024-02-12 15:41:16
  */
 
 #include "Game.h"
-#include <iostream>
 
-Game::Game() {}
+#include "TextureManager.h"
+
+Game::Game(const char *title, int winW, int winH)
+{
+  name = title;
+  windowW = winW;
+  windowH = winH;
+}
+
 Game::~Game() {}
 
-void Game::init(const char *title, int winW, int winH)
+void Game::init()
 {
   //? Init SDL
   int ini = SDL_Init(SDL_INIT_EVERYTHING);
@@ -20,11 +27,11 @@ void Game::init(const char *title, int winW, int winH)
 
   //? Create SDL Window
   m_pWindow = SDL_CreateWindow(
-      title,
+      name.c_str(),
       SDL_WINDOWPOS_CENTERED,
       SDL_WINDOWPOS_CENTERED,
-      winW,
-      winH,
+      windowW,
+      windowH,
       SDL_WINDOW_SHOWN);
   if (!m_pWindow)
     return;
@@ -34,6 +41,10 @@ void Game::init(const char *title, int winW, int winH)
   if (!m_pRenderer)
     return;
 
+  //? Load the Textures
+  TheTextureManager::Instance()->load(m_pRenderer, "assets/rider.bmp", "rider");
+  TheTextureManager::Instance()->load(m_pRenderer, "assets/animate-alpha.png", "sprite");
+
   // #
   m_bRunning = true;
 }
@@ -41,7 +52,7 @@ void Game::init(const char *title, int winW, int winH)
 void Game::handleEvents()
 {
   SDL_Event event;
-  if (SDL_PollEvent(&event))
+  while (SDL_PollEvent(&event))
   {
     switch (event.type)
     {
@@ -56,13 +67,31 @@ void Game::handleEvents()
 
 void Game::update()
 {
-  //!
+  m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
 }
 
 void Game::render()
 {
-  SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
+  //? Clear with black color
+  SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
   SDL_RenderClear(m_pRenderer);
+
+  //? Draw a Rect
+  SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
+  SDL_Rect tRect;
+  tRect.x = 0;
+  tRect.y = 0;
+  tRect.w = 125;
+  tRect.h = 89;
+  SDL_RenderDrawRect(m_pRenderer, &tRect);
+
+  //? Draw the texture
+  TheTextureManager::Instance()->draw(m_pRenderer, "rider", 0, 0, 125, 89, 0, 0, SDL_FLIP_NONE);
+
+  //? Draw the sprite
+  TheTextureManager::Instance()->draw(m_pRenderer, "sprite", 0, 100, 128, 82, 0, m_currentFrame, SDL_FLIP_NONE);
+
+  // #
   SDL_RenderPresent(m_pRenderer);
 }
 

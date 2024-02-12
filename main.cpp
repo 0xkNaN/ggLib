@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 12:53:45
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-11 15:51:08
+ * @Last Modified time: 2024-02-12 21:31:48
  */
 
 #include <iostream>
@@ -10,34 +10,31 @@
 
 #include "framework/Game.h"
 
-#define WINW 1280
-#define WINH 960
-
-Game *game = nullptr;
+#define WINW 1024
+#define WINH 768
 
 bool g_bRunning = false;
 
 int main()
 {
-  Game *game = new Game("Demo Game using ggLib", WINW, WINH);
 
-  game->init();
-  if (!game->running())
+  TheGame::Instance()->init("ggLib Demo", WINW, WINH);
+  if (!TheGame::Instance()->running())
   {
     std::cout << "SDL Error ::" << SDL_GetError() << std::endl;
     return -1;
   }
 
   //? Game Loop
-  while (game->running())
+  while (TheGame::Instance()->running())
   {
-    game->handleEvents();
-    game->update();
-    game->render();
+    TheGame::Instance()->handleEvents();
+    TheGame::Instance()->update();
+    TheGame::Instance()->render();
   }
 
   //? Delay and Close
-  game->clean();
+  TheGame::Instance()->clean();
 
   return 0;
 }

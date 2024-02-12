@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-12 15:35:41
+ * @Last Modified time: 2024-02-12 15:43:11
  */
 
 #pragma once
@@ -21,7 +21,6 @@ public:
   {
     if (s_pInstance == 0)
       s_pInstance = new TextureManager();
-
     return s_pInstance;
   }
 
@@ -29,7 +28,7 @@ public:
   void draw(SDL_Renderer *renderer, const char *id, int x, int y, int width, int height, int currRow = 0, int currFrame = 0, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 private:
-  TextureManager();
+  TextureManager() {}
 
   static TextureManager *s_pInstance;
 

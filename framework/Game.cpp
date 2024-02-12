@@ -2,23 +2,20 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:08
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-12 15:41:16
+ * @Last Modified time: 2024-02-12 21:30:59
  */
 
 #include "Game.h"
 
 #include "TextureManager.h"
 
-Game::Game(const char *title, int winW, int winH)
+Game *Game::s_pInstance = nullptr;
+
+Game::~Game()
 {
-  name = title;
-  windowW = winW;
-  windowH = winH;
 }
 
-Game::~Game() {}
-
-void Game::init()
+void Game::init(const char *title, int winW, int winH)
 {
   //? Init SDL
   int ini = SDL_Init(SDL_INIT_EVERYTHING);
@@ -26,13 +23,7 @@ void Game::init()
     return;
 
   //? Create SDL Window
-  m_pWindow = SDL_CreateWindow(
-      name.c_str(),
-      SDL_WINDOWPOS_CENTERED,
-      SDL_WINDOWPOS_CENTERED,
-      windowW,
-      windowH,
-      SDL_WINDOW_SHOWN);
+  m_pWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, winW, winH, SDL_WINDOW_SHOWN);
   if (!m_pWindow)
     return;
 

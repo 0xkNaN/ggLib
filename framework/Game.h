@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:01
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-12 15:12:38
+ * @Last Modified time: 2024-02-12 21:30:25
  */
 
 #pragma once
@@ -15,10 +15,16 @@
 class Game
 {
 public:
-  Game(const char *title, int winW, int winH);
   ~Game();
 
-  void init();
+  static Game *Instance()
+  {
+    if (s_pInstance == 0)
+      s_pInstance = new Game();
+    return s_pInstance;
+  }
+
+  void init(const char *title, int winW, int winH);
   void handleEvents();
   void update();
   void render();
@@ -27,6 +33,10 @@ public:
   bool running() { return m_bRunning; }
 
 private:
+  Game() {}
+
+  static Game *s_pInstance;
+
   std::string name;
   int windowW;
   int windowH;
@@ -49,3 +59,5 @@ private:
   //? TMP
   int m_currentFrame;
 };
+
+typedef Game TheGame;

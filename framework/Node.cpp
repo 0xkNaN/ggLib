@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:50:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 15:29:46
+ * @Last Modified time: 2024-02-14 15:43:01
  */
 
 #include "Node.h"
@@ -22,11 +22,13 @@ void Node::load(const LoaderParams *params)
   m_textureId = params->getTextureId();
   m_currRow = 0;
   m_currFrame = 0;
+  m_flip = SDL_FLIP_NONE;
 }
 
 void Node::draw()
 {
-
+  std::cout << "Node flip :: " << m_flip << std::endl;
+  
   TheTextureManager::Instance()->draw(
       TheGame::Instance()->getRenderer(),
       m_textureId,
@@ -35,7 +37,8 @@ void Node::draw()
       m_width,
       m_height,
       m_currRow,
-      m_currFrame);
+      m_currFrame,
+      m_flip);
 }
 
 void Node::update()

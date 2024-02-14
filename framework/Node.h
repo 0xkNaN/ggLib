@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:49:56
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 15:20:14
+ * @Last Modified time: 2024-02-14 15:41:51
  */
 #pragma once
 
@@ -26,7 +26,7 @@ public:
 
   int getWidth() { return m_width; }
   int getHeight() { return m_height; }
-  // Vector2D getPosition() { return m_position; }
+  Vector2D getPosition() { return m_position; }
 
 protected:
   Vector2D m_position;
@@ -39,4 +39,5 @@ protected:
   const char *m_textureId;
   int m_currRow;
   int m_currFrame;
+  SDL_RendererFlip m_flip;
 };

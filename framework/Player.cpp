@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:53:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 15:29:58
+ * @Last Modified time: 2024-02-14 15:45:46
  */
 
 #include "Player.h"
@@ -19,7 +19,8 @@ void Player::draw()
 
 void Player::update()
 {
-  m_currFrame = int(((SDL_GetTicks() / 100) % 5));
+  m_currFrame = int(((SDL_GetTicks() / 100) % 4));
+  m_flip = SDL_FLIP_HORIZONTAL;
 
   // m_acceleration.setX(1);
 

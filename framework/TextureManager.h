@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-12 15:43:11
+ * @Last Modified time: 2024-02-14 12:55:45
  */
 
 #pragma once
@@ -26,6 +26,8 @@ public:
 
   bool load(SDL_Renderer *renderer, const char *file, const char *id);
   void draw(SDL_Renderer *renderer, const char *id, int x, int y, int width, int height, int currRow = 0, int currFrame = 0, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+  std::map<const char *, SDL_Texture *> getTextureMap() const { return m_texturesMap; }
 
 private:
   TextureManager() {}

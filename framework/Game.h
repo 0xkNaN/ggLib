@@ -2,15 +2,19 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:01
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-12 21:30:25
+ * @Last Modified time: 2024-02-14 13:10:38
  */
 
 #pragma once
 
 #include <iostream>
 #include <string>
+#include <vector>
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
+#include "Object.h"
 
 class Game
 {
@@ -24,13 +28,15 @@ public:
     return s_pInstance;
   }
 
-  void init(const char *title, int winW, int winH);
+  bool init(const char *title, int winW, int winH);
   void handleEvents();
   void update();
   void render();
   void clean();
 
   bool running() { return m_bRunning; }
+
+  SDL_Renderer *getRenderer() const { return m_pRenderer; }
 
 private:
   Game() {}
@@ -46,18 +52,7 @@ private:
 
   bool m_bRunning = false;
 
-  //? Texture
-  SDL_Texture *m_pTexture;
-  SDL_Rect m_srcRect;
-  SDL_Rect m_dstRect;
-
-  //? Sprite
-  SDL_Texture *m_pSprite;
-  SDL_Rect m_srcRectSprite;
-  SDL_Rect m_dstRectSprite;
-
-  //? TMP
-  int m_currentFrame;
+  std::vector<Object *> m_gameObjects;
 };
 
 typedef Game TheGame;

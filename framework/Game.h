@@ -14,7 +14,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "Object.h"
+#include "Node.h"
 
 class Game
 {
@@ -52,7 +52,7 @@ private:
 
   bool m_bRunning = false;
 
-  std::vector<Object *> m_gameObjects;
+  std::vector<Node *> m_gameObjects;
 };
 
 typedef Game TheGame;

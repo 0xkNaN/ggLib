@@ -2,16 +2,15 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:53:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 13:09:52
+ * @Last Modified time: 2024-02-14 15:29:58
  */
 
 #include "Player.h"
 
-Player::Player(const LoaderParams *params) : Node(params)
+void Player::load(const LoaderParams *params)
 {
+  Node::load(params);
 }
-
-// ~Player();
 
 void Player::draw()
 {
@@ -20,8 +19,11 @@ void Player::draw()
 
 void Player::update()
 {
-  m_x += 1;
-  m_currFrame = int(((SDL_GetTicks() / 100) % 6));
+  m_currFrame = int(((SDL_GetTicks() / 100) % 5));
+
+  // m_acceleration.setX(1);
+
+  Node::update();
 }
 
 void Player::clean()

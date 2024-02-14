@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:50:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 13:04:20
+ * @Last Modified time: 2024-02-14 15:29:46
  */
 
 #include "Node.h"
@@ -10,12 +10,12 @@
 #include "Game.h"
 #include "TextureManager.h"
 
-Node::Node(const LoaderParams *params) : Object(params)
+void Node::load(const LoaderParams *params)
 {
-  std::cout << "Node init:: " << params->getTextureId() << params->getX() << params->getY() << params->getWidth() << params->getHeight() << std::endl;
+  m_position = Vector2D(params->getX(), params->getY());
+  m_velocity = Vector2D(0, 0);
+  m_acceleration = Vector2D(0, 0);
 
-  m_x = params->getX();
-  m_y = params->getY();
   m_width = params->getWidth();
   m_height = params->getHeight();
 
@@ -26,13 +26,12 @@ Node::Node(const LoaderParams *params) : Object(params)
 
 void Node::draw()
 {
-  // std::cout << "Node draw :: " << m_textureId << m_x << m_y << m_width << m_height << std::endl;
 
   TheTextureManager::Instance()->draw(
       TheGame::Instance()->getRenderer(),
       m_textureId,
-      m_x,
-      m_y,
+      m_position.getX(),
+      m_position.getY(),
       m_width,
       m_height,
       m_currRow,
@@ -41,6 +40,8 @@ void Node::draw()
 
 void Node::update()
 {
+  m_velocity += m_acceleration;
+  m_position += m_velocity;
 }
 
 void Node::clean()

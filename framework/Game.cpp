@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:08
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 13:09:05
+ * @Last Modified time: 2024-02-14 15:17:45
  */
 
 #include "Game.h"
@@ -37,12 +37,16 @@ bool Game::init(const char *title, int winW, int winH)
     return false;
 
   //? Load the Textures
-  TheTextureManager::Instance()->load(m_pRenderer, "assets/animate-alpha.png", "sprite");
-  TheTextureManager::Instance()->load(m_pRenderer, "assets/rider.bmp", "rider");
+  TheTextureManager::Instance()->load(m_pRenderer, "assets/helicopter.png", "player");
+  TheTextureManager::Instance()->load(m_pRenderer, "assets/helicopter2.png", "enemy");
 
-  //? Game Object
-  m_gameObjects.push_back(new Player(new LoaderParams(0, 300, 125, 89, "sprite")));
-  m_gameObjects.push_back(new Enemy(new LoaderParams(900, 300, 128, 82, "rider")));
+  //! TMP Game Objects
+  Player *player = new Player();
+  Enemy *enemy = new Enemy();
+  player->load(new LoaderParams(0, 300, 128, 55, "player"));
+  enemy->load(new LoaderParams(900, 300, 128, 55, "enemy"));
+  m_gameObjects.push_back(player);
+  m_gameObjects.push_back(enemy);
 
   // #
   m_bRunning = true;
@@ -67,7 +71,7 @@ void Game::handleEvents()
 
 void Game::update()
 {
-  for (std::vector<Object *>::size_type i = 0; i != m_gameObjects.size(); i++)
+  for (std::vector<Node *>::size_type i = 0; i != m_gameObjects.size(); i++)
   {
     m_gameObjects[i]->update();
   }
@@ -76,11 +80,11 @@ void Game::update()
 void Game::render()
 {
   //? Clear with black color
-  SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
+  SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
   SDL_RenderClear(m_pRenderer);
 
   //? Draw GameObjects
-  for (std::vector<Object *>::size_type i = 0; i != m_gameObjects.size(); i++)
+  for (std::vector<Node *>::size_type i = 0; i != m_gameObjects.size(); i++)
   {
     m_gameObjects[i]->draw();
   }

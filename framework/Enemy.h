@@ -2,15 +2,15 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:53:57
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 14:11:41
+ * @Last Modified time: 2024-02-16 00:31:47
  */
 #pragma once
 
 #include <iostream>
 
-#include "Node.h"
+#include "Actor.h"
 
-class Enemy : public Node
+class Enemy : public Actor
 {
 public:
   Enemy() {}
@@ -21,4 +21,6 @@ public:
   virtual void draw();
   virtual void update();
   virtual void clean();
+
+protected:
 };

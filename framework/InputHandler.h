@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 15:05:28
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-15 17:06:42
+ * @Last Modified time: 2024-02-15 17:24:32
  */
 #pragma once
 
@@ -66,12 +66,14 @@ private:
   //? Mouse
   Vector2D *m_mousePosition;
   std::vector<bool> m_mouseButtonStates;
+  //...
   void onMouseButtonDown(SDL_Event &event);
   void onMouseButtonUp(SDL_Event &event);
   void onMouseMove(SDL_Event &event);
 
   //? Keyboard
   const Uint8 *m_keyStates;
+  //...
   void onKeyDown();
   void onKeyUp();
 };

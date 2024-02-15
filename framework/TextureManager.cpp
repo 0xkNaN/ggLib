@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-15 00:16:13
+ * @Last Modified time: 2024-02-15 23:18:28
  */
 
 #include "TextureManager.h"
@@ -30,7 +30,10 @@ bool TextureManager::load(SDL_Renderer *renderer, const char *file, const char *
   return true;
 }
 
-void TextureManager::draw(SDL_Renderer *renderer, const char *id, int x, int y, int width, int height, int currRow, int currFrame, SDL_RendererFlip flip)
+void TextureManager::draw(
+    SDL_Renderer *renderer, const char *id,
+    int x, int y, int width, int height, int currRow, int currFrame,
+    double angle, SDL_RendererFlip flip)
 {
   SDL_Rect srcRect;
   SDL_Rect dstRect;
@@ -42,5 +45,5 @@ void TextureManager::draw(SDL_Renderer *renderer, const char *id, int x, int y, 
   dstRect.w = srcRect.w = width;
   dstRect.h = srcRect.h = height;
 
-  SDL_RenderCopyEx(renderer, m_texturesMap[id], &srcRect, &dstRect, 0, 0, flip);
+  SDL_RenderCopyEx(renderer, m_texturesMap[id], &srcRect, &dstRect, angle, 0, flip);
 }

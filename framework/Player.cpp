@@ -2,20 +2,25 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:53:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-15 17:14:42
+ * @Last Modified time: 2024-02-16 00:37:35
  */
 
 #include "Player.h"
 #include "InputHandler.h"
 
+Player::Player()
+{
+}
+
 void Player::load(const LoaderParams *params)
 {
-  Node::load(params);
+  Actor::load(params);
+  m_flip = SDL_FLIP_HORIZONTAL;
 }
 
 void Player::draw()
 {
-  Node::draw();
+  Actor::draw();
 }
 
 void Player::update()
@@ -24,11 +29,11 @@ void Player::update()
   m_velocity.setY(0);
 
   m_currFrame = int(((SDL_GetTicks() / 100) % 4));
-  // m_flip = SDL_FLIP_HORIZONTAL;
+  m_angle = 0;
 
   handleInputs();
 
-  Node::update();
+  Actor::update();
 }
 
 void Player::handleInputs()
@@ -81,20 +86,37 @@ void Player::handleInputs()
   }
 
   //? Mouse Move
-  Vector2D *mousePosition = TheInputHandler::Instance()->mousePosition();
-  m_velocity = (*mousePosition - m_position) / 20;
-  if (mousePosition->getX() > m_position.getX())
-    m_flip = SDL_FLIP_HORIZONTAL;
-  else
-    m_flip = SDL_FLIP_NONE;
+  // Vector2D *mousePosition = TheInputHandler::Instance()->mousePosition();
+  // m_velocity = (*mousePosition - m_position) / 20;
+  // if (mousePosition->getX() > m_position.getX())
+  //   m_flip = SDL_FLIP_HORIZONTAL;
+  // else
+  //   m_flip = SDL_FLIP_NONE;
 
   //? Keyboard
-  if (TheInputHandler::Instance()->keyPressed(SDL_SCANCODE_SPACE))
+  if (TheInputHandler::Instance()->keyPressed(SDL_SCANCODE_LEFT))
   {
-    // std::cout << "Space key is pressed " << std::endl;
+    m_velocity.setX(-5);
+    m_angle = -5;
+    m_flip = SDL_FLIP_NONE;
+  }
+  if (TheInputHandler::Instance()->keyPressed(SDL_SCANCODE_RIGHT))
+  {
+    m_velocity.setX(5);
+    m_angle = 5;
+    m_flip = SDL_FLIP_HORIZONTAL;
+  }
+  if (TheInputHandler::Instance()->keyPressed(SDL_SCANCODE_UP))
+  {
+    m_velocity.setY(-5);
+  }
+  if (TheInputHandler::Instance()->keyPressed(SDL_SCANCODE_DOWN))
+  {
+    m_velocity.setY(5);
   }
 }
 
 void Player::clean()
 {
+  Actor::clean();
 }

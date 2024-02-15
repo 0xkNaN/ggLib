@@ -2,18 +2,18 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:53:41
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-15 12:52:28
+ * @Last Modified time: 2024-02-16 00:32:54
  */
 #pragma once
 
 #include <iostream>
 
-#include "Node.h"
+#include "Actor.h"
 
-class Player : public Node
+class Player : public Actor
 {
 public:
-  Player() : Node() {}
+  Player();
   ~Player() {}
 
   void load(const LoaderParams *params);

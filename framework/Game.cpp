@@ -2,13 +2,14 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:08
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 15:17:45
+ * @Last Modified time: 2024-02-15 12:18:53
  */
 
 #include "Game.h"
 
 #include "TextureManager.h"
 #include "LoaderParams.h"
+#include "InputHandler.h"
 
 #include "Player.h"
 #include "Enemy.h"
@@ -40,11 +41,14 @@ bool Game::init(const char *title, int winW, int winH)
   TheTextureManager::Instance()->load(m_pRenderer, "assets/helicopter.png", "player");
   TheTextureManager::Instance()->load(m_pRenderer, "assets/helicopter2.png", "enemy");
 
-  //! TMP Game Objects
+  //? Init InputHandler
+  TheInputHandler::Instance()->initJoysticks();
+
+  //? Game Objects
   Player *player = new Player();
   Enemy *enemy = new Enemy();
-  player->load(new LoaderParams(0, 300, 128, 55, "player"));
-  enemy->load(new LoaderParams(900, 300, 128, 55, "enemy"));
+  player->load(new LoaderParams(30, 300, 128, 55, "player"));
+  enemy->load(new LoaderParams(850, 300, 128, 55, "enemy"));
   m_gameObjects.push_back(player);
   m_gameObjects.push_back(enemy);
 
@@ -55,18 +59,7 @@ bool Game::init(const char *title, int winW, int winH)
 
 void Game::handleEvents()
 {
-  SDL_Event event;
-  while (SDL_PollEvent(&event))
-  {
-    switch (event.type)
-    {
-    case SDL_QUIT:
-      m_bRunning = false;
-      break;
-    default:
-      break;
-    }
-  }
+  TheInputHandler::Instance()->update();
 }
 
 void Game::update()
@@ -95,6 +88,7 @@ void Game::render()
 
 void Game::clean()
 {
+  TheInputHandler::Instance()->clean();
   SDL_DestroyRenderer(m_pRenderer);
   SDL_DestroyWindow(m_pWindow);
   SDL_Quit();

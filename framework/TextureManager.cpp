@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-12 15:34:50
+ * @Last Modified time: 2024-02-15 00:16:13
  */
 
 #include "TextureManager.h"
@@ -25,7 +25,7 @@ bool TextureManager::load(SDL_Renderer *renderer, const char *file, const char *
   if (texture == 0)
     return false;
 
-  //? Add texture in the list with the id
+  //? Save texture
   m_texturesMap[id] = texture;
   return true;
 }

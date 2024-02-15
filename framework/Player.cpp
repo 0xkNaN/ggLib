@@ -2,10 +2,11 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:53:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 15:45:46
+ * @Last Modified time: 2024-02-15 17:14:42
  */
 
 #include "Player.h"
+#include "InputHandler.h"
 
 void Player::load(const LoaderParams *params)
 {
@@ -19,12 +20,79 @@ void Player::draw()
 
 void Player::update()
 {
-  m_currFrame = int(((SDL_GetTicks() / 100) % 4));
-  m_flip = SDL_FLIP_HORIZONTAL;
+  m_velocity.setX(0);
+  m_velocity.setY(0);
 
-  // m_acceleration.setX(1);
+  m_currFrame = int(((SDL_GetTicks() / 100) % 4));
+  // m_flip = SDL_FLIP_HORIZONTAL;
+
+  handleInputs();
 
   Node::update();
+}
+
+void Player::handleInputs()
+{
+
+  //? Joystick
+  if (TheInputHandler::Instance()->joysticksInitialised())
+  {
+    //? Joy Axis
+    if (TheInputHandler::Instance()->xAxisValue(0, 1) != 0)
+    {
+      // m_velocity.setX(1 * TheInputHandler::Instance()->xAxisValue(0, 1));
+    }
+    if (TheInputHandler::Instance()->yAxisValue(0, 1) != 0)
+    {
+      // m_velocity.setY(1 * TheInputHandler::Instance()->yAxisValue(0, 1));
+    }
+    if (TheInputHandler::Instance()->xAxisValue(0, 2) != 0)
+    {
+      // m_velocity.setX(1 * TheInputHandler::Instance()->xAxisValue(0, 2));
+    }
+    if (TheInputHandler::Instance()->yAxisValue(0, 2) != 0)
+    {
+      // m_velocity.setY(1 * TheInputHandler::Instance()->yAxisValue(0, 2));
+    }
+
+    //? Joy Buttons
+    if (TheInputHandler::Instance()->buttonState(0, 0))
+    {
+      // std::cout << "Joy Button 0" << std::endl;
+    }
+    if (TheInputHandler::Instance()->buttonState(0, 1))
+    {
+      // std::cout << "Joy Button 1" << std::endl;
+    }
+  }
+
+  //? Mouse
+  if (TheInputHandler::Instance()->mouseButtonState(MouseButtons::LEFT))
+  {
+    // std::cout << "Mouse Button Left" << std::endl;
+  }
+  if (TheInputHandler::Instance()->mouseButtonState(MouseButtons::MIDDLE))
+  {
+    // std::cout << "Mouse Button Middle" << std::endl;
+  }
+  if (TheInputHandler::Instance()->mouseButtonState(MouseButtons::RIGHT))
+  {
+    // std::cout << "Mouse Button Right" << std::endl;
+  }
+
+  //? Mouse Move
+  Vector2D *mousePosition = TheInputHandler::Instance()->mousePosition();
+  m_velocity = (*mousePosition - m_position) / 20;
+  if (mousePosition->getX() > m_position.getX())
+    m_flip = SDL_FLIP_HORIZONTAL;
+  else
+    m_flip = SDL_FLIP_NONE;
+
+  //? Keyboard
+  if (TheInputHandler::Instance()->keyPressed(SDL_SCANCODE_SPACE))
+  {
+    // std::cout << "Space key is pressed " << std::endl;
+  }
 }
 
 void Player::clean()

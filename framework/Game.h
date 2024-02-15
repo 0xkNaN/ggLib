@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:01
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 13:10:38
+ * @Last Modified time: 2024-02-15 11:54:40
  */
 
 #pragma once
@@ -35,6 +35,7 @@ public:
   void clean();
 
   bool running() { return m_bRunning; }
+  void quit() { m_bRunning = false; }
 
   SDL_Renderer *getRenderer() const { return m_pRenderer; }
 

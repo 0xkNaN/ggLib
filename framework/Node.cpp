@@ -27,8 +27,6 @@ void Node::load(const LoaderParams *params)
 
 void Node::draw()
 {
-  std::cout << "Node flip :: " << m_flip << std::endl;
-  
   TheTextureManager::Instance()->draw(
       TheGame::Instance()->getRenderer(),
       m_textureId,

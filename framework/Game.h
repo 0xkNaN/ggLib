@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:01
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 00:38:51
+ * @Last Modified time: 2024-02-16 15:28:11
  */
 
 #pragma once
@@ -14,6 +14,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include "StateMachine.h"
 #include "Node.h"
 
 class Game
@@ -38,6 +39,7 @@ public:
   void quit() { m_bRunning = false; }
 
   SDL_Renderer *getRenderer() const { return m_pRenderer; }
+  StateMachine *getStateMachine() const { return m_stateMachine; }
 
 private:
   Game() {}
@@ -53,6 +55,7 @@ private:
 
   bool m_bRunning = false;
 
+  StateMachine *m_stateMachine;
   std::vector<Node *> m_gameObjects;
 };
 

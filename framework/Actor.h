@@ -28,9 +28,6 @@ protected:
   Vector2D m_velocity;
   Vector2D m_acceleration;
 
-  int m_width;
-  int m_height;
-
   const char *m_textureId;
   int m_currRow;
   int m_currFrame;

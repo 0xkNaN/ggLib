@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-15 23:18:28
+ * @Last Modified time: 2024-02-16 12:05:59
  */
 
 #include "TextureManager.h"
@@ -46,4 +46,9 @@ void TextureManager::draw(
   dstRect.h = srcRect.h = height;
 
   SDL_RenderCopyEx(renderer, m_texturesMap[id], &srcRect, &dstRect, angle, 0, flip);
+}
+
+void TextureManager::clearTexture(const char *id)
+{
+  m_texturesMap.erase(id);
 }

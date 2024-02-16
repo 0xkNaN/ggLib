@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:50:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 00:44:14
+ * @Last Modified time: 2024-02-16 13:00:51
  */
 
 #include "Actor.h"
@@ -12,12 +12,10 @@
 
 void Actor::load(const LoaderParams *params)
 {
-  m_position = Vector2D(params->getX(), params->getY());
+  Node::load(params);
+
   m_velocity = Vector2D(0, 0);
   m_acceleration = Vector2D(0, 0);
-
-  m_width = params->getWidth();
-  m_height = params->getHeight();
 
   m_textureId = params->getTextureId();
   m_currRow = 0;
@@ -44,8 +42,6 @@ void Actor::update()
 {
   m_velocity += m_acceleration;
   m_position += m_velocity;
-
-  Node::update();
 }
 
 void Actor::clean()

@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-15 00:15:40
+ * @Last Modified time: 2024-02-16 12:05:24
  */
 #pragma once
 
@@ -30,6 +30,8 @@ public:
       double angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
   std::map<const char *, SDL_Texture *> getTextureMap() const { return m_texturesMap; }
+
+  void clearTexture(const char *id);
 
 private:
   TextureManager() {}

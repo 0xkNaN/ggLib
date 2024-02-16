@@ -1,17 +1,16 @@
 /**
  * @Author: Hassen Rmili
- * @Date:   2024-02-16 10:45:00
+ * @Date:   2024-02-16 21:36:20
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 22:28:45
+ * @Last Modified time: 2024-02-16 21:38:59
  */
 #pragma once
 
 #include <vector>
-
 #include "State.h"
 #include "Node.h"
 
-class StatePlay : public State
+class StatePause : public State
 {
 public:
   virtual void update();
@@ -20,12 +19,13 @@ public:
   virtual bool onEnter();
   virtual bool onExit();
 
-  virtual const char *stateId() const { return s_playId; };
+  virtual const char *stateId() const { return s_pauseId; };
 
 private:
-  static const char *s_playId;
+  static const char *s_pauseId;
 
   std::vector<Node *> m_gameObjects;
 
-  void checkCollision();
+  static void s_onBtnPauseHandler();
+  static void s_onBtnResumeGame();
 };

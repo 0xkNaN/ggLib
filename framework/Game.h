@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:01
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 15:28:11
+ * @Last Modified time: 2024-02-16 22:29:24
  */
 
 #pragma once
@@ -38,8 +38,8 @@ public:
   bool running() { return m_bRunning; }
   void quit() { m_bRunning = false; }
 
-  SDL_Renderer *getRenderer() const { return m_pRenderer; }
-  StateMachine *getStateMachine() const { return m_stateMachine; }
+  SDL_Renderer *renderer() const { return m_pRenderer; }
+  StateMachine *stateMachine() const { return m_stateMachine; }
 
 private:
   Game() {}
@@ -56,7 +56,6 @@ private:
   bool m_bRunning = false;
 
   StateMachine *m_stateMachine;
-  std::vector<Node *> m_gameObjects;
 };
 
 typedef Game TheGame;

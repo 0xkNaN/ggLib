@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 15:05:39
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-15 17:16:13
+ * @Last Modified time: 2024-02-16 21:57:29
  */
 
 #include "InputHandler.h"
@@ -83,6 +83,13 @@ void InputHandler::clean()
   }
 }
 
+void InputHandler::reset()
+{
+  m_mouseButtonStates[int(MouseButtons::LEFT)] = false;
+  m_mouseButtonStates[int(MouseButtons::MIDDLE)] = false;
+  m_mouseButtonStates[int(MouseButtons::RIGHT)] = false;
+}
+
 //? Joysticks
 void InputHandler::initJoysticks()
 {
@@ -132,9 +139,9 @@ int InputHandler::xAxisValue(int joy, int stick) const
   if (m_joysticksValues.size() > 0)
   {
     if (stick == 1)
-      return m_joysticksValues[joy].first->getX();
+      return m_joysticksValues[joy].first->x();
     else if (stick == 2)
-      return m_joysticksValues[joy].second->getX();
+      return m_joysticksValues[joy].second->x();
   }
 
   return 0;
@@ -145,9 +152,9 @@ int InputHandler::yAxisValue(int joy, int stick) const
   if (m_joysticksValues.size() > 0)
   {
     if (stick == 1)
-      return m_joysticksValues[joy].first->getY();
+      return m_joysticksValues[joy].first->y();
     else if (stick == 2)
-      return m_joysticksValues[joy].second->getY();
+      return m_joysticksValues[joy].second->y();
   }
 
   return 0;

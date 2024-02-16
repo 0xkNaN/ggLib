@@ -1,18 +1,18 @@
 /**
  * @Author: Hassen Rmili
- * @Date:   2024-02-16 09:58:29
+ * @Date:   2024-02-16 22:51:15
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 10:13:05
+ * @Last Modified time: 2024-02-17 00:00:43
  */
 #pragma once
 
-#include "Empty.h"
+#include "UI.h"
 
-class Area : public Empty
+class UIText : public UI
 {
 public:
-  Area(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
-  ~Area() {}
+  UIText();
+  ~UIText() {}
 
   virtual void load(const LoaderParams *params);
 

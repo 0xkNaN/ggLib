@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 10:48:23
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 12:58:43
+ * @Last Modified time: 2024-02-16 15:40:51
  */
 
 #include "StateMachine.h"
@@ -18,13 +18,12 @@ void StateMachine::changeState(State *state)
   if (!m_gameStates.empty())
   {
     //? Do nothing if the Same State
-    if (m_gameStates.back()->getStateId() == state->getStateId())
+    if (m_gameStates.back()->stateId() == state->stateId())
       return;
 
     //? Pop the last state
     if (m_gameStates.back()->onExit())
     {
-      delete m_gameStates.back();
       m_gameStates.pop_back();
     }
 
@@ -40,7 +39,6 @@ void StateMachine::popState()
   {
     if (m_gameStates.back()->onExit())
     {
-      delete m_gameStates.back();
       m_gameStates.pop_back();
     }
   }
@@ -48,6 +46,9 @@ void StateMachine::popState()
 
 void StateMachine::update()
 {
+  // std::cout << "StateMachine state :: "
+  //           << m_gameStates.size() << std::endl;
+
   if (!m_gameStates.empty())
   {
     m_gameStates.back()->update();

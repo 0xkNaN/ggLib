@@ -2,22 +2,41 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 11:52:51
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 14:51:06
+ * @Last Modified time: 2024-02-16 23:54:47
  */
 #pragma once
 
 class LoaderParams
 {
 public:
-  LoaderParams(int x, int y, int width, int height, const char *textureId) : m_x(x), m_y(y), m_width(width), m_height(height), m_textureId(textureId)
+  LoaderParams(
+      int x, int y, int width, int height, const char *textureId,
+      int numFrames = 1, int animSpeed = 1, int callbackId = 0)
   {
+    m_x = x;
+    m_y = y;
+    m_width = width;
+    m_height = height;
+
+    m_textureId = textureId;
+
+    m_numFrames = numFrames;
+    m_animSpeed = animSpeed;
+
+    m_callbackId = callbackId;
   }
 
-  int getX() const { return m_x; }
-  int getY() const { return m_y; }
-  int getWidth() const { return m_width; }
-  int getHeight() const { return m_height; }
-  const char *getTextureId() const { return m_textureId; }
+  int x() const { return m_x; }
+  int y() const { return m_y; }
+  int width() const { return m_width; }
+  int height() const { return m_height; }
+
+  const char *textureId() const { return m_textureId; }
+
+  int numFrames() const { return m_numFrames; }
+  int animSpeed() const { return m_animSpeed; }
+
+  int callbackId() const { return m_callbackId; }
 
 private:
   int m_x;
@@ -26,4 +45,9 @@ private:
   int m_height;
 
   const char *m_textureId;
+
+  int m_numFrames;
+  int m_animSpeed;
+
+  int m_callbackId;
 };

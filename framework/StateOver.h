@@ -1,8 +1,8 @@
 /**
  * @Author: Hassen Rmili
- * @Date:   2024-02-16 10:45:00
+ * @Date:   2024-02-16 23:28:49
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 22:28:45
+ * @Last Modified time: 2024-02-16 23:47:03
  */
 #pragma once
 
@@ -11,21 +11,21 @@
 #include "State.h"
 #include "Node.h"
 
-class StatePlay : public State
+class StateOver : public State
 {
-public:
   virtual void update();
   virtual void render();
 
   virtual bool onEnter();
   virtual bool onExit();
 
-  virtual const char *stateId() const { return s_playId; };
+  virtual const char *stateId() const { return s_overId; };
 
 private:
-  static const char *s_playId;
+  static const char *s_overId;
 
   std::vector<Node *> m_gameObjects;
 
-  void checkCollision();
+  static void s_onBtnOverHandler();
+  static void s_onBtnRestartGame();
 };

@@ -15,6 +15,7 @@ Player::Player()
 void Player::load(const LoaderParams *params)
 {
   Actor::load(params);
+  m_angle = 0;
   m_flip = SDL_FLIP_HORIZONTAL;
 }
 
@@ -28,7 +29,7 @@ void Player::update()
   m_velocity.setX(0);
   m_velocity.setY(0);
 
-  m_currFrame = int(((SDL_GetTicks() / 100) % 4));
+  m_currFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
   m_angle = 0;
 
   handleInputs();
@@ -88,7 +89,7 @@ void Player::handleInputs()
   //? Mouse Move
   // Vector2D *mousePosition = TheInputHandler::Instance()->mousePosition();
   // m_velocity = (*mousePosition - m_position) / 20;
-  // if (mousePosition->getX() > m_position.getX())
+  // if (mousePosition->x() > m_position.x())
   //   m_flip = SDL_FLIP_HORIZONTAL;
   // else
   //   m_flip = SDL_FLIP_NONE;

@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 15:05:28
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-15 17:24:32
+ * @Last Modified time: 2024-02-16 21:53:59
  */
 #pragma once
 
@@ -31,6 +31,8 @@ public:
 
   void update();
   void clean();
+
+  void reset();
 
   //? Joysticks
   void initJoysticks();

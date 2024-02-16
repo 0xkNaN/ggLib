@@ -18,8 +18,8 @@ public:
   virtual void update();
   virtual void clean();
 
-  int getWidth() { return m_width; }
-  int getHeight() { return m_height; }
+  int width() { return m_width; }
+  int height() { return m_height; }
 
 protected:
   Actor() {}
@@ -33,4 +33,6 @@ protected:
   int m_currFrame;
   double m_angle;
   SDL_RendererFlip m_flip;
+
+  int m_numFrames;
 };

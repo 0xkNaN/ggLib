@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:08
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 12:50:16
+ * @Last Modified time: 2024-02-16 15:53:50
  */
 
 #include "Game.h"
@@ -13,12 +13,6 @@
 #include "TextureManager.h"
 #include "LoaderParams.h"
 #include "InputHandler.h"
-
-#include "Player.h"
-#include "Enemy.h"
-
-#include "Empty.h"
-#include "Area.h"
 
 Game *Game::s_pInstance = nullptr;
 
@@ -54,24 +48,6 @@ bool Game::init(const char *title, int winW, int winH)
   //? Init InputHandler
   TheInputHandler::Instance()->initJoysticks();
 
-  //? Game Objects
-  Player *player = new Player();
-  Enemy *enemy = new Enemy();
-  player->load(new LoaderParams(30, 300, 128, 55, "player"));
-  enemy->load(new LoaderParams(850, 300, 128, 55, "enemy"));
-  m_gameObjects.push_back(player);
-  m_gameObjects.push_back(enemy);
-
-  //? Test Empty
-  Empty *empty = new Empty(255, 0, 0, 255);
-  empty->load(new LoaderParams(300, 300, 1, 1, NULL));
-  m_gameObjects.push_back(empty);
-
-  //? Test Empty
-  Empty *area = new Area(0, 255, 0, 255);
-  area->load(new LoaderParams(400, 300, 100, 100, NULL));
-  m_gameObjects.push_back(area);
-
   // #
   m_bRunning = true;
   return true;
@@ -80,12 +56,6 @@ bool Game::init(const char *title, int winW, int winH)
 void Game::handleEvents()
 {
   TheInputHandler::Instance()->update();
-
-  //! TMP StateMachine -- Open StatePlay
-  if (TheInputHandler::Instance()->keyPressed(SDL_SCANCODE_RETURN))
-  {
-    m_stateMachine->changeState(new StatePlay());
-  }
 }
 
 void Game::update()

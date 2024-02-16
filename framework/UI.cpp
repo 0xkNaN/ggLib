@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 11:33:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 15:03:52
+ * @Last Modified time: 2024-02-17 00:09:42
  */
 
 #include "UI.h"
@@ -16,18 +16,23 @@ void UI::load(const LoaderParams *params)
 {
   Node::load(params);
 
-  m_textureId = params->getTextureId();
+  m_bHovered = false;
+
+  m_textureId = params->textureId();
   m_currRow = 0;
   m_currFrame = int(UI_STATE::MOUSE_OUT);
+
+  m_numFrames = params->numFrames();
+  m_animSpeed = params->animSpeed();
 }
 
 void UI::draw()
 {
   TheTextureManager::Instance()->draw(
-      TheGame::Instance()->getRenderer(),
+      TheGame::Instance()->renderer(),
       m_textureId,
-      m_position.getX(),
-      m_position.getY(),
+      m_position.x(),
+      m_position.y(),
       m_width,
       m_height,
       m_currRow,
@@ -38,24 +43,16 @@ void UI::update()
 {
   //? Mouse Position
   Vector2D *mpos = TheInputHandler::Instance()->mousePosition();
-  float mposX = mpos->getX();
-  float mposY = mpos->getY();
+  float mposX = mpos->x();
+  float mposY = mpos->y();
 
   //? UI Position
-  float posX = m_position.getX();
-  float posY = m_position.getY();
+  float posX = m_position.x();
+  float posY = m_position.y();
 
   //? Check Mouse Hover
-  if (
-      mposX > posX && mposX < (posX + m_width) &&
-      mposY > posY && mposY < (posY + m_height))
-  {
-    m_currFrame = int(UI_STATE::MOUSE_HOVER);
-  }
-  else
-  {
-    m_currFrame = int(UI_STATE::MOUSE_OUT);
-  }
+  m_bHovered = mposX > posX && mposX < (posX + m_width) &&
+               mposY > posY && mposY < (posY + m_height);
 }
 
 void UI::clean()

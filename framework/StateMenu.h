@@ -20,13 +20,13 @@ public:
   virtual bool onEnter();
   virtual bool onExit();
 
-  virtual const char *getStateId() const { return s_menuId; };
-
-  std::vector<Node *> m_gameObjects;
+  virtual const char *stateId() const { return s_menuId; };
 
 private:
   static const char *s_menuId;
 
-  static void s_menuToPlay();
-  static void s_exitFromMenu();
+  std::vector<Node *> m_gameObjects;
+
+  static void s_onBtnPlayHandler();
+  static void s_onBtnExitGame();
 };

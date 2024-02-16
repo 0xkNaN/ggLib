@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:50:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 13:00:51
+ * @Last Modified time: 2024-02-16 23:09:03
  */
 
 #include "Actor.h"
@@ -17,31 +17,37 @@ void Actor::load(const LoaderParams *params)
   m_velocity = Vector2D(0, 0);
   m_acceleration = Vector2D(0, 0);
 
-  m_textureId = params->getTextureId();
+  m_textureId = params->textureId();
   m_currRow = 0;
   m_currFrame = 0;
   m_flip = SDL_FLIP_NONE;
+
+  m_numFrames = params->numFrames();
 }
 
 void Actor::draw()
 {
   TheTextureManager::Instance()->draw(
-      TheGame::Instance()->getRenderer(),
+      TheGame::Instance()->renderer(),
       m_textureId,
-      m_position.getX(),
-      m_position.getY(),
+      m_position.x(),
+      m_position.y(),
       m_width,
       m_height,
       m_currRow,
       m_currFrame,
       m_angle,
       m_flip);
+
+  Node::draw();
 }
 
 void Actor::update()
 {
   m_velocity += m_acceleration;
   m_position += m_velocity;
+
+  Node::update();
 }
 
 void Actor::clean()

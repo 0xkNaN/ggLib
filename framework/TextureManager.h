@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 12:05:24
+ * @Last Modified time: 2024-02-16 22:28:04
  */
 #pragma once
 
@@ -29,7 +29,7 @@ public:
       int x, int y, int width, int height, int currRow = 0, int currFrame = 0,
       double angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-  std::map<const char *, SDL_Texture *> getTextureMap() const { return m_texturesMap; }
+  std::map<const char *, SDL_Texture *> textureMap() const { return m_texturesMap; }
 
   void clearTexture(const char *id);
 

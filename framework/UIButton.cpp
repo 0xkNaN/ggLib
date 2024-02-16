@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 11:55:44
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 15:24:06
+ * @Last Modified time: 2024-02-17 00:09:10
  */
 
 #include "UIButton.h"
@@ -29,8 +29,10 @@ void UIButton::update()
 {
   UI::update();
 
-  if (m_currFrame == int(UI_STATE::MOUSE_HOVER))
+  if (m_bHovered)
   {
+    m_currFrame = int(UI_STATE::MOUSE_HOVER);
+
     if (TheInputHandler::Instance()->mouseButtonState(MouseButtons::LEFT) && !m_bClicked)
     {
       m_bClicked = true;
@@ -41,6 +43,10 @@ void UIButton::update()
     {
       m_bClicked = false;
     }
+  }
+  else
+  {
+    m_currFrame = int(UI_STATE::MOUSE_OUT);
   }
 }
 

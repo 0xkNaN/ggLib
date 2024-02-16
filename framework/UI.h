@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 11:26:00
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 12:27:40
+ * @Last Modified time: 2024-02-17 00:04:02
  */
 #pragma once
 
@@ -28,7 +28,12 @@ public:
   virtual void clean();
 
 protected:
+  bool m_bHovered;
+
   const char *m_textureId;
   int m_currRow;
   int m_currFrame;
+
+  int m_numFrames;
+  int m_animSpeed;
 };

@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 22:28:04
+ * @Last Modified time: 2024-02-17 15:03:34
  */
 #pragma once
 
@@ -23,22 +23,22 @@ public:
     return s_pInstance;
   }
 
-  bool load(SDL_Renderer *renderer, const char *file, const char *id);
+  bool load(SDL_Renderer *renderer, std::string file, std::string id);
   void draw(
-      SDL_Renderer *renderer, const char *id,
+      SDL_Renderer *renderer, std::string id,
       int x, int y, int width, int height, int currRow = 0, int currFrame = 0,
       double angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-  std::map<const char *, SDL_Texture *> textureMap() const { return m_texturesMap; }
+  std::map<std::string, SDL_Texture *> textureMap() const { return m_texturesMap; }
 
-  void clearTexture(const char *id);
+  void clearTexture(std::string id);
 
 private:
   TextureManager() {}
 
   static TextureManager *s_pInstance;
 
-  std::map<const char *, SDL_Texture *> m_texturesMap;
+  std::map<std::string, SDL_Texture *> m_texturesMap;
 };
 
 typedef TextureManager TheTextureManager;

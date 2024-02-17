@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 12:05:59
+ * @Last Modified time: 2024-02-17 15:04:17
  */
 
 #include "TextureManager.h"
@@ -13,9 +13,9 @@ TextureManager::~TextureManager()
 {
 }
 
-bool TextureManager::load(SDL_Renderer *renderer, const char *file, const char *id)
+bool TextureManager::load(SDL_Renderer *renderer, std::string file, std::string id)
 {
-  SDL_Surface *tmpSurf = IMG_Load(file);
+  SDL_Surface *tmpSurf = IMG_Load(file.c_str());
   if (tmpSurf == 0)
     return false;
 
@@ -31,7 +31,7 @@ bool TextureManager::load(SDL_Renderer *renderer, const char *file, const char *
 }
 
 void TextureManager::draw(
-    SDL_Renderer *renderer, const char *id,
+    SDL_Renderer *renderer, std::string id,
     int x, int y, int width, int height, int currRow, int currFrame,
     double angle, SDL_RendererFlip flip)
 {
@@ -48,7 +48,7 @@ void TextureManager::draw(
   SDL_RenderCopyEx(renderer, m_texturesMap[id], &srcRect, &dstRect, angle, 0, flip);
 }
 
-void TextureManager::clearTexture(const char *id)
+void TextureManager::clearTexture(std::string id)
 {
   m_texturesMap.erase(id);
 }

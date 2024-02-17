@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 10:45:00
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 22:28:45
+ * @Last Modified time: 2024-02-17 15:08:53
  */
 #pragma once
 
@@ -20,10 +20,10 @@ public:
   virtual bool onEnter();
   virtual bool onExit();
 
-  virtual const char *stateId() const { return s_playId; };
+  virtual std::string stateId() const { return s_playId; };
 
 private:
-  static const char *s_playId;
+  static std::string s_playId;
 
   std::vector<Node *> m_gameObjects;
 

@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:50:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 23:09:03
+ * @Last Modified time: 2024-02-17 11:16:36
  */
 
 #include "Actor.h"
@@ -14,15 +14,16 @@ void Actor::load(const LoaderParams *params)
 {
   Node::load(params);
 
+  m_textureId = params->textureId();
+  m_numFrames = params->numFrames();
+
   m_velocity = Vector2D(0, 0);
   m_acceleration = Vector2D(0, 0);
 
-  m_textureId = params->textureId();
   m_currRow = 0;
   m_currFrame = 0;
+  m_angle = 0;
   m_flip = SDL_FLIP_NONE;
-
-  m_numFrames = params->numFrames();
 }
 
 void Actor::draw()

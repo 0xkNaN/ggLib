@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 22:51:48
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 00:01:42
+ * @Last Modified time: 2024-02-17 15:22:29
  */
 
 #include "UIText.h"

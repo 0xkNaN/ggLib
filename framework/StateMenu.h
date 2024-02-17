@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 10:38:28
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 15:18:32
+ * @Last Modified time: 2024-02-17 12:10:31
  */
 #pragma once
 
@@ -13,20 +13,9 @@
 
 class StateMenu : public State
 {
-public:
-  virtual void update();
-  virtual void render();
+protected:
+  typedef void (*Callback)();
+  virtual void setCallbacks(const std::vector<Callback> &callbacks) = 0;
 
-  virtual bool onEnter();
-  virtual bool onExit();
-
-  virtual const char *stateId() const { return s_menuId; };
-
-private:
-  static const char *s_menuId;
-
-  std::vector<Node *> m_gameObjects;
-
-  static void s_onBtnPlayHandler();
-  static void s_onBtnExitGame();
+  std::vector<Callback> m_callbacks;
 };

@@ -2,15 +2,15 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 21:36:20
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 21:38:59
+ * @Last Modified time: 2024-02-17 15:08:00
  */
 #pragma once
 
 #include <vector>
-#include "State.h"
+#include "StateMenu.h"
 #include "Node.h"
 
-class StatePause : public State
+class StateMenuPause : public StateMenu
 {
 public:
   virtual void update();
@@ -19,13 +19,15 @@ public:
   virtual bool onEnter();
   virtual bool onExit();
 
-  virtual const char *stateId() const { return s_pauseId; };
+  virtual std::string stateId() const { return s_pauseId; };
 
 private:
-  static const char *s_pauseId;
+  static std::string s_pauseId;
 
   std::vector<Node *> m_gameObjects;
 
   static void s_onBtnPauseHandler();
   static void s_onBtnResumeGame();
+
+  virtual void setCallbacks(const std::vector<Callback> &callbacks);
 };

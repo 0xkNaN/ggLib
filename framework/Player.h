@@ -2,12 +2,14 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:53:41
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 00:32:54
+ * @Last Modified time: 2024-02-17 11:09:48
  */
 #pragma once
 
 #include <iostream>
 
+#include "ObjectFactory.h"
+#include "Node.h"
 #include "Actor.h"
 
 class Player : public Actor
@@ -24,4 +26,12 @@ public:
 
 private:
   void handleInputs();
+};
+
+class PlayerCreator : public BaseCreator
+{
+  Node *createNode() const
+  {
+    return new Player();
+  }
 };

@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 11:33:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 00:09:42
+ * @Last Modified time: 2024-02-17 11:18:41
  */
 
 #include "UI.h"
@@ -16,14 +16,14 @@ void UI::load(const LoaderParams *params)
 {
   Node::load(params);
 
-  m_bHovered = false;
-
   m_textureId = params->textureId();
+  m_numFrames = params->numFrames();
+  m_animSpeed = params->animSpeed();
+
   m_currRow = 0;
   m_currFrame = int(UI_STATE::MOUSE_OUT);
 
-  m_numFrames = params->numFrames();
-  m_animSpeed = params->animSpeed();
+  m_bHovered = false;
 }
 
 void UI::draw()

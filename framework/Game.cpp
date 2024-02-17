@@ -2,25 +2,25 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:08
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 15:53:50
+ * @Last Modified time: 2024-02-17 15:25:04
  */
 
 #include "Game.h"
 
-#include "StateMenu.h"
-#include "StatePlay.h"
-
-#include "TextureManager.h"
 #include "LoaderParams.h"
 #include "InputHandler.h"
+#include "ObjectFactory.h"
+
+#include "StateMenuMain.h"
+
+#include "Player.h"
+#include "Enemy.h"
+#include "UIButton.h"
+#include "UIText.h"
 
 Game *Game::s_pInstance = nullptr;
 
-Game::~Game()
-{
-}
-
-bool Game::init(const char *title, int winW, int winH)
+bool Game::init(std::string title, int winW, int winH)
 {
   //? Init SDL
   int ini = SDL_Init(SDL_INIT_EVERYTHING);
@@ -28,7 +28,7 @@ bool Game::init(const char *title, int winW, int winH)
     return false;
 
   //? Create SDL Window
-  m_pWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, winW, winH, SDL_WINDOW_SHOWN);
+  m_pWindow = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, winW, winH, SDL_WINDOW_SHOWN);
   if (!m_pWindow)
     return false;
 
@@ -37,13 +37,15 @@ bool Game::init(const char *title, int winW, int winH)
   if (!m_pRenderer)
     return false;
 
+  //? Objecy Factory
+  TheObjectFactory::Instance()->registerType("Player", new PlayerCreator());
+  TheObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
+  TheObjectFactory::Instance()->registerType("UIButton", new UIButtonCreator());
+  TheObjectFactory::Instance()->registerType("UIText", new UITextCreator());
+
   //? State Machine
   m_stateMachine = new StateMachine();
-  m_stateMachine->pushState(new StateMenu());
-
-  //? Load the Textures
-  TheTextureManager::Instance()->load(m_pRenderer, "assets/helicopter.png", "player");
-  TheTextureManager::Instance()->load(m_pRenderer, "assets/helicopter2.png", "enemy");
+  m_stateMachine->pushState(new StateMenuMain());
 
   //? Init InputHandler
   TheInputHandler::Instance()->initJoysticks();

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<states>
+  <state_menu_main>
+    <textures>
+      <texture file="assets/play.png" id="play_button" />
+      <texture file="assets/exit.png" id="exit_button" />
+    </textures>
+
+    <objects>
+      <object type="UIButton" x="320" y="350" width="400" height="100" textureId="play_button" callbackId="1" />
+      <object type="UIButton" x="320" y="500" width="400" height="100" textureId="exit_button" callbackId="2" />
+    </objects>
+  </state_menu_main>
+
+  <state_menu_pause>
+    <textures>
+      <texture file="assets/main.png" id="main_button" />
+      <texture file="assets/resume.png" id="resume_button" />
+    </textures>
+
+    <objects>
+      <object type="UIButton" x="420" y="350" width="200" height="80" textureId="main_button" callbackId="1" />
+      <object type="UIButton" x="420" y="450" width="200" height="80" textureId="resume_button" callbackId="2" />
+    </objects>
+  </state_menu_pause>
+
+  <state_menu_over>
+    <textures>
+      <texture file="assets/gameover.png" id="over_text" />
+      <texture file="assets/main.png" id="main_button" />
+      <texture file="assets/restart.png" id="restart_button" />
+    </textures>
+
+    <objects>
+      <object type="UIText" x="420" y="200" width="190" height="30" textureId="over_text" numFrames="2" animSpeed="2" />
+      <object type="UIButton" x="420" y="350" width="200" height="80" textureId="main_button" callbackId="1" />
+      <object type="UIButton" x="420" y="450" width="200" height="80" textureId="restart_button" callbackId="2" />
+    </objects>
+  </state_menu_over>
+
+  <state_play_demo>
+    <textures>
+      <texture file="assets/helicopter.png" id="player" />
+      <texture file="assets/helicopter2.png" id="enemy" />
+    </textures>
+
+    <objects>
+      <object type="Player" x="30" y="300" width="128" height="55" textureId="player" numFrames="4" />
+      <object type="Enemy" x="850" y="300" width="128" height="55" textureId="enemy" numFrames="4" />
+    </objects>
+  </state_play_demo>
+</states>

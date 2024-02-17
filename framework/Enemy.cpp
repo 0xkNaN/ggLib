@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:54:02
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 23:28:01
+ * @Last Modified time: 2024-02-17 11:18:21
  */
 
 #include "Enemy.h"
@@ -13,8 +13,6 @@ void Enemy::load(const LoaderParams *params)
 
   m_velocity.setX(-8);
   m_velocity.setY(-4);
-  m_angle = 0;
-  m_flip = SDL_FLIP_NONE;
 }
 
 void Enemy::draw()

@@ -2,9 +2,8 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:01
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 22:29:24
+ * @Last Modified time: 2024-02-17 15:14:17
  */
-
 #pragma once
 
 #include <iostream>
@@ -20,7 +19,7 @@
 class Game
 {
 public:
-  ~Game();
+  ~Game() {}
 
   static Game *Instance()
   {
@@ -29,7 +28,7 @@ public:
     return s_pInstance;
   }
 
-  bool init(const char *title, int winW, int winH);
+  bool init(std::string title, int winW, int winH);
   void handleEvents();
   void update();
   void render();

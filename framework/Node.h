@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 00:26:39
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 22:27:41
+ * @Last Modified time: 2024-02-17 15:05:40
  */
 #pragma once
 
@@ -11,8 +11,6 @@
 
 #include "Object.h"
 #include "Vector2D.h"
-
-//! Do collision detection here
 
 class Node : public Object
 {

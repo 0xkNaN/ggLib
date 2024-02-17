@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 11:26:00
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 00:04:02
+ * @Last Modified time: 2024-02-17 15:09:59
  */
 #pragma once
 
@@ -30,7 +30,7 @@ public:
 protected:
   bool m_bHovered;
 
-  const char *m_textureId;
+  std::string m_textureId;
   int m_currRow;
   int m_currFrame;
 

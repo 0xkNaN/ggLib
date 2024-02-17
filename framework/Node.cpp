@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 00:42:12
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 23:11:15
+ * @Last Modified time: 2024-02-17 11:16:45
  */
 
 #include "Game.h"
@@ -10,9 +10,10 @@
 
 void Node::load(const LoaderParams *params)
 {
-  m_position = Vector2D(params->x(), params->y());
   m_width = params->width();
   m_height = params->height();
+
+  m_position = Vector2D(params->x(), params->y());
 }
 
 void Node::update()
@@ -26,6 +27,7 @@ void Node::update()
 
 void Node::draw()
 {
+  //? Collider
   SDL_SetRenderDrawColor(TheGame::Instance()->renderer(), 0, 0, 0, 1);
   SDL_RenderDrawRect(TheGame::Instance()->renderer(), &m_collider);
 }

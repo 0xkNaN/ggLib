@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 10:45:10
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 23:52:34
+ * @Last Modified time: 2024-02-17 15:08:59
  */
 
 #include <iostream>
@@ -11,16 +11,13 @@
 #include "LoaderParams.h"
 #include "TextureManager.h"
 #include "InputHandler.h"
-
-#include "Node.h"
-#include "Player.h"
-#include "Enemy.h"
+#include "StateParser.h"
 
 #include "StatePlay.h"
-#include "StatePause.h"
-#include "StateOver.h"
+#include "StateMenuPause.h"
+#include "StateMenuOver.h"
 
-const char *StatePlay::s_playId = "PLAY";
+std::string StatePlay::s_playId = "state_play_demo";
 
 void StatePlay::update()
 {
@@ -36,7 +33,7 @@ void StatePlay::render()
 {
   if (TheInputHandler::Instance()->keyPressed(SDL_SCANCODE_ESCAPE))
   {
-    TheGame::Instance()->stateMachine()->pushState(new StatePause());
+    TheGame::Instance()->stateMachine()->pushState(new StateMenuPause());
   }
 
   for (int i = 0; i < m_gameObjects.size(); i++)
@@ -58,7 +55,7 @@ void StatePlay::checkCollision()
 
         if (SDL_HasIntersection(&iCollider, &jCollider))
         {
-          TheGame::Instance()->stateMachine()->pushState(new StateOver());
+          TheGame::Instance()->stateMachine()->pushState(new StateMenuOver());
         }
       }
     }
@@ -67,29 +64,28 @@ void StatePlay::checkCollision()
 
 bool StatePlay::onEnter()
 {
-  //? Load Textures
-  if (!TheTextureManager::Instance()->load(
-          TheGame::Instance()->renderer(), "assets/helicopter.png", "player"))
-    return false;
+  //? Parse State
+  StateParser stateParser;
+  stateParser.parseState("states.xml", s_playId, &m_gameObjects, &m_textureIdList);
 
-  if (!TheTextureManager::Instance()->load(
-          TheGame::Instance()->renderer(), "assets/helicopter2.png", "enemy"))
-    return false;
+  // //? Load Textures
+  // if (!TheTextureManager::Instance()->load(
+  //         TheGame::Instance()->renderer(), "assets/helicopter.png", "player"))
+  //   return false;
 
-  //? Player
-  Player *player = new Player();
-  player->load(new LoaderParams(30, 300, 128, 55, "player", 4));
-  m_gameObjects.push_back(player);
+  // if (!TheTextureManager::Instance()->load(
+  //         TheGame::Instance()->renderer(), "assets/helicopter2.png", "enemy"))
+  //   return false;
 
-  //? Player
-  Enemy *enemy = new Enemy();
-  enemy->load(new LoaderParams(850, 300, 128, 55, "enemy", 4));
-  m_gameObjects.push_back(enemy);
+  // //? Player
+  // Player *player = new Player();
+  // player->load(new LoaderParams(30, 300, 128, 55, "player", 4));
+  // m_gameObjects.push_back(player);
 
-  //? Area Test
-  // Node *area = new Node();
-  // area->load(new LoaderParams(460, 300, 100, 55, NULL));
-  // m_gameObjects.push_back(area);
+  // //? Player
+  // Enemy *enemy = new Enemy();
+  // enemy->load(new LoaderParams(850, 300, 128, 55, "enemy", 4));
+  // m_gameObjects.push_back(enemy);
 
   // #
   return true;
@@ -97,14 +93,17 @@ bool StatePlay::onEnter()
 
 bool StatePlay::onExit()
 {
-  for (unsigned i = 0; i < m_gameObjects.size(); i++)
+  for (int i = 0; i < m_gameObjects.size(); i++)
   {
     m_gameObjects[i]->clean();
   }
 
   m_gameObjects.clear();
-  TheTextureManager::Instance()->clearTexture("player");
-  TheTextureManager::Instance()->clearTexture("enemy");
+
+  for (int i = 0; i < m_textureIdList.size(); i++)
+  {
+    TheTextureManager::Instance()->clearTexture(m_textureIdList[i].c_str());
+  }
 
   TheInputHandler::Instance()->reset();
 

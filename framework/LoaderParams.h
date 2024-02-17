@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 11:52:51
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 23:54:47
+ * @Last Modified time: 2024-02-17 15:12:42
  */
 #pragma once
 
@@ -10,7 +10,7 @@ class LoaderParams
 {
 public:
   LoaderParams(
-      int x, int y, int width, int height, const char *textureId,
+      int x, int y, int width, int height, std::string textureId,
       int numFrames = 1, int animSpeed = 1, int callbackId = 0)
   {
     m_x = x;
@@ -19,7 +19,6 @@ public:
     m_height = height;
 
     m_textureId = textureId;
-
     m_numFrames = numFrames;
     m_animSpeed = animSpeed;
 
@@ -31,7 +30,7 @@ public:
   int width() const { return m_width; }
   int height() const { return m_height; }
 
-  const char *textureId() const { return m_textureId; }
+  std::string textureId() const { return m_textureId; }
 
   int numFrames() const { return m_numFrames; }
   int animSpeed() const { return m_animSpeed; }
@@ -44,7 +43,7 @@ private:
   int m_width;
   int m_height;
 
-  const char *m_textureId;
+  std::string m_textureId;
 
   int m_numFrames;
   int m_animSpeed;

@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 10:48:23
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 15:40:51
+ * @Last Modified time: 2024-02-17 00:17:38
  */
 
 #include "StateMachine.h"
@@ -46,9 +46,6 @@ void StateMachine::popState()
 
 void StateMachine::update()
 {
-  // std::cout << "StateMachine state :: "
-  //           << m_gameStates.size() << std::endl;
-
   if (!m_gameStates.empty())
   {
     m_gameStates.back()->update();

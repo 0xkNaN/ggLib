@@ -15,7 +15,7 @@ Player::Player()
 void Player::load(const LoaderParams *params)
 {
   Actor::load(params);
-  m_angle = 0;
+
   m_flip = SDL_FLIP_HORIZONTAL;
 }
 

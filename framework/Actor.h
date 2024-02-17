@@ -28,7 +28,7 @@ protected:
   Vector2D m_velocity;
   Vector2D m_acceleration;
 
-  const char *m_textureId;
+  std::string m_textureId;
   int m_currRow;
   int m_currFrame;
   double m_angle;

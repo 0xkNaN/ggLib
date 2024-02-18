@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-17 10:48:44
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 14:22:19
+ * @Last Modified time: 2024-02-17 17:39:42
  */
 #pragma once
 
@@ -29,7 +29,7 @@ public:
   }
 
   bool registerType(std::string typeId, BaseCreator *creator);
-  Node *create(std::string typeId);
+  Node *createType(std::string typeId);
 
 private:
   ObjectFactory() {}

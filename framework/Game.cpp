@@ -2,16 +2,16 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:08
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:25:04
+ * @Last Modified time: 2024-02-18 21:11:25
  */
 
 #include "Game.h"
 
+#include "StateMenuMain.h"
+
+#include "ObjectFactory.h"
 #include "LoaderParams.h"
 #include "InputHandler.h"
-#include "ObjectFactory.h"
-
-#include "StateMenuMain.h"
 
 #include "Player.h"
 #include "Enemy.h"
@@ -36,6 +36,11 @@ bool Game::init(std::string title, int winW, int winH)
   m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
   if (!m_pRenderer)
     return false;
+
+  //? Game Props
+  m_name = title;
+  m_windowW = winW;
+  m_windowH = winH;
 
   //? Objecy Factory
   TheObjectFactory::Instance()->registerType("Player", new PlayerCreator());
@@ -67,7 +72,7 @@ void Game::update()
 
 void Game::render()
 {
-  //? Clear with black color
+  //? Clear
   SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
   SDL_RenderClear(m_pRenderer);
 
@@ -80,9 +85,9 @@ void Game::render()
 
 void Game::clean()
 {
-  m_stateMachine->clean();
-
   TheInputHandler::Instance()->clean();
+
+  m_stateMachine->clean();
 
   SDL_DestroyRenderer(m_pRenderer);
   SDL_DestroyWindow(m_pWindow);

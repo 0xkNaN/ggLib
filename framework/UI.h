@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 11:26:00
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:09:59
+ * @Last Modified time: 2024-02-18 00:09:55
  */
 #pragma once
 
@@ -23,8 +23,8 @@ public:
 
   virtual void load(const LoaderParams *params);
 
-  virtual void draw();
   virtual void update();
+  virtual void render();
   virtual void clean();
 
 protected:

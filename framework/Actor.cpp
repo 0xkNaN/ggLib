@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:50:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 11:16:36
+ * @Last Modified time: 2024-02-18 00:05:27
  */
 
 #include "Actor.h"
@@ -26,9 +26,17 @@ void Actor::load(const LoaderParams *params)
   m_flip = SDL_FLIP_NONE;
 }
 
-void Actor::draw()
+void Actor::update()
 {
-  TheTextureManager::Instance()->draw(
+  m_velocity += m_acceleration;
+  m_position += m_velocity;
+
+  Node::update();
+}
+
+void Actor::render()
+{
+  TheTextureManager::Instance()->render(
       TheGame::Instance()->renderer(),
       m_textureId,
       m_position.x(),
@@ -40,15 +48,7 @@ void Actor::draw()
       m_angle,
       m_flip);
 
-  Node::draw();
-}
-
-void Actor::update()
-{
-  m_velocity += m_acceleration;
-  m_position += m_velocity;
-
-  Node::update();
+  Node::render();
 }
 
 void Actor::clean()

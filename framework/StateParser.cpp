@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-17 11:21:54
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:21:42
+ * @Last Modified time: 2024-02-17 17:40:20
  */
 
 #include <iostream>
@@ -101,7 +101,7 @@ void StateParser::parseObjects(TiXmlElement *stateRoot, std::vector<Node *> *obj
     e->Attribute("animSpeed", &animSpeed);
     e->Attribute("callbackId", &callbackId);
 
-    Node *obj = TheObjectFactory::Instance()->create(type);
+    Node *obj = TheObjectFactory::Instance()->createType(type);
     obj->load(new LoaderParams(x, y, width, height, textureId, numFrames, animSpeed, callbackId));
 
     objects->push_back(obj);

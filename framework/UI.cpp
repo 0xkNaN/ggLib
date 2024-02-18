@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 11:33:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 11:18:41
+ * @Last Modified time: 2024-02-18 00:09:41
  */
 
 #include "UI.h"
@@ -26,19 +26,6 @@ void UI::load(const LoaderParams *params)
   m_bHovered = false;
 }
 
-void UI::draw()
-{
-  TheTextureManager::Instance()->draw(
-      TheGame::Instance()->renderer(),
-      m_textureId,
-      m_position.x(),
-      m_position.y(),
-      m_width,
-      m_height,
-      m_currRow,
-      m_currFrame);
-}
-
 void UI::update()
 {
   //? Mouse Position
@@ -53,6 +40,19 @@ void UI::update()
   //? Check Mouse Hover
   m_bHovered = mposX > posX && mposX < (posX + m_width) &&
                mposY > posY && mposY < (posY + m_height);
+}
+
+void UI::render()
+{
+  TheTextureManager::Instance()->render(
+      TheGame::Instance()->renderer(),
+      m_textureId,
+      m_position.x(),
+      m_position.y(),
+      m_width,
+      m_height,
+      m_currRow,
+      m_currFrame);
 }
 
 void UI::clean()

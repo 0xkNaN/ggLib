@@ -14,8 +14,8 @@ class Actor : public Node
 public:
   virtual void load(const LoaderParams *params);
 
-  virtual void draw();
   virtual void update();
+  virtual void render();
   virtual void clean();
 
   int width() { return m_width; }

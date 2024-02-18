@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 23:29:06
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:09:28
+ * @Last Modified time: 2024-02-18 00:08:01
  */
 
 #include <iostream>
@@ -34,7 +34,7 @@ void StateMenuOver::render()
 {
   for (int i = 0; i < m_gameObjects.size(); i++)
   {
-    m_gameObjects[i]->draw();
+    m_gameObjects[i]->render();
   }
 }
 

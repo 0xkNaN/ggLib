@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:53:50
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-16 00:37:35
+ * @Last Modified time: 2024-02-18 00:07:21
  */
 
 #include "Player.h"
@@ -19,11 +19,6 @@ void Player::load(const LoaderParams *params)
   m_flip = SDL_FLIP_HORIZONTAL;
 }
 
-void Player::draw()
-{
-  Actor::draw();
-}
-
 void Player::update()
 {
   m_velocity.setX(0);
@@ -35,6 +30,11 @@ void Player::update()
   handleInputs();
 
   Actor::update();
+}
+
+void Player::render()
+{
+  Actor::render();
 }
 
 void Player::handleInputs()

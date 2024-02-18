@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 13:34:01
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:14:17
+ * @Last Modified time: 2024-02-18 15:43:41
  */
 #pragma once
 
@@ -37,6 +37,10 @@ public:
   bool running() { return m_bRunning; }
   void quit() { m_bRunning = false; }
 
+  std::string gameName() const { return m_name; }
+  int gameWidth() const { return m_windowW; }
+  int gameHeight() const { return m_windowH; }
+
   SDL_Renderer *renderer() const { return m_pRenderer; }
   StateMachine *stateMachine() const { return m_stateMachine; }
 
@@ -45,9 +49,9 @@ private:
 
   static Game *s_pInstance;
 
-  std::string name;
-  int windowW;
-  int windowH;
+  std::string m_name;
+  int m_windowW;
+  int m_windowH;
 
   SDL_Window *m_pWindow = nullptr;
   SDL_Renderer *m_pRenderer = nullptr;

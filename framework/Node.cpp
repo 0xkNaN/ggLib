@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 00:42:12
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 11:16:45
+ * @Last Modified time: 2024-02-18 21:15:35
  */
 
 #include "Game.h"
@@ -25,11 +25,11 @@ void Node::update()
   m_collider.h = m_height;
 }
 
-void Node::draw()
+void Node::render()
 {
   //? Collider
-  SDL_SetRenderDrawColor(TheGame::Instance()->renderer(), 0, 0, 0, 1);
-  SDL_RenderDrawRect(TheGame::Instance()->renderer(), &m_collider);
+  // SDL_SetRenderDrawColor(TheGame::Instance()->renderer(), 0, 0, 0, 1);
+  // SDL_RenderDrawRect(TheGame::Instance()->renderer(), &m_collider);
 }
 
 void Node::clean()

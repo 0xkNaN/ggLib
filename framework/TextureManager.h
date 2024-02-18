@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:03:34
+ * @Last Modified time: 2024-02-18 15:58:21
  */
 #pragma once
 
@@ -24,10 +24,17 @@ public:
   }
 
   bool load(SDL_Renderer *renderer, std::string file, std::string id);
-  void draw(
+
+  void render(
       SDL_Renderer *renderer, std::string id,
       int x, int y, int width, int height, int currRow = 0, int currFrame = 0,
       double angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+  void renderTile(
+      SDL_Renderer *renderer, std::string id,
+      int margin, int spacing,
+      int x, int y, int width, int height,
+      int currRow = 0, int currFrame = 0);
 
   std::map<std::string, SDL_Texture *> textureMap() const { return m_texturesMap; }
 

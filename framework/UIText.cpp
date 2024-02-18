@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 22:51:48
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:22:29
+ * @Last Modified time: 2024-02-18 00:11:05
  */
 
 #include "UIText.h"
@@ -17,16 +17,16 @@ void UIText::load(const LoaderParams *params)
   UI::load(params);
 }
 
-void UIText::draw()
-{
-  UI::draw();
-}
 
 void UIText::update()
 {
   m_currFrame = int((SDL_GetTicks() / (1000 / m_animSpeed)) % m_numFrames);
 
   UI::update();
+}
+void UIText::render()
+{
+  UI::render();
 }
 
 void UIText::clean()

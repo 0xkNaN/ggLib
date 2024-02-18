@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-11 12:53:45
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-14 15:04:40
+ * @Last Modified time: 2024-02-18 20:28:09
  */
 
 #include <iostream>
@@ -11,8 +11,8 @@
 #include <SDL2/SDL.h>
 #include "framework/Game.h"
 
-#define WINW 1024
-#define WINH 768
+#define WINW 640
+#define WINH 480
 #define FPS 60
 #define FRAME_RATE 1000.0f / FPS
 

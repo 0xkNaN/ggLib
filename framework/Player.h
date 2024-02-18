@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-14 10:53:41
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 11:09:48
+ * @Last Modified time: 2024-02-18 00:07:36
  */
 #pragma once
 
@@ -20,8 +20,8 @@ public:
 
   void load(const LoaderParams *params);
 
-  void draw();
   void update();
+  void render();
   void clean();
 
 private:

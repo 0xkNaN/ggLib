@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 00:26:39
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:05:40
+ * @Last Modified time: 2024-02-18 00:06:36
  */
 #pragma once
 
@@ -20,8 +20,8 @@ public:
 
   virtual void load(const LoaderParams *params);
 
-  virtual void draw();
   virtual void update();
+  virtual void render();
   virtual void clean();
 
   Vector2D position() { return m_position; }

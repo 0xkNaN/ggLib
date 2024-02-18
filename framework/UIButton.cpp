@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 11:55:44
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:10:19
+ * @Last Modified time: 2024-02-18 00:10:18
  */
 
 #include "UIButton.h"
@@ -20,11 +20,6 @@ void UIButton::load(const LoaderParams *params)
   m_bClicked = false;
 }
 
-void UIButton::draw()
-{
-  UI::draw();
-}
-
 void UIButton::update()
 {
   UI::update();
@@ -37,7 +32,7 @@ void UIButton::update()
     {
       m_bClicked = true;
       m_currFrame = int(UI_STATE::MOUSE_CLICK);
-      
+
       m_callback();
     }
     else if (!TheInputHandler::Instance()->mouseButtonState(MouseButtons::LEFT) && m_bClicked)
@@ -49,6 +44,11 @@ void UIButton::update()
   {
     m_currFrame = int(UI_STATE::MOUSE_OUT);
   }
+}
+
+void UIButton::render()
+{
+  UI::render();
 }
 
 void UIButton::clean()

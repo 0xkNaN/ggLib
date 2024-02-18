@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-16 21:37:05
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:08:08
+ * @Last Modified time: 2024-02-18 00:08:58
  */
 
 #include <iostream>
@@ -32,7 +32,7 @@ void StateMenuPause::render()
 {
   for (int i = 0; i < m_gameObjects.size(); i++)
   {
-    m_gameObjects[i]->draw();
+    m_gameObjects[i]->render();
   }
 }
 

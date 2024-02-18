@@ -17,8 +17,8 @@ public:
 
   virtual void load(const LoaderParams *params);
 
-  virtual void draw();
   virtual void update();
+  virtual void render();
   virtual void clean();
 
   int callbackId() { return m_callbackId; }

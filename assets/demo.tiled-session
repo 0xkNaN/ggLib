@@ -1,0 +1,53 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "map.tmx": {
+            "scale": 1.0962,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 314.26746943988326,
+                "y": 232.16566320014596
+            }
+        },
+        "map2.tmx": {
+            "scale": 1.4413281249999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.1907962491192,
+                "y": 240.40327389018378
+            }
+        },
+        "tileset.tsx": {
+            "scaleInDock": 0.9074,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "/home/hassen/kNaN/gamedev/009_projects/ggLib/assets",
+    "last.imagePath": "/home/hassen/kNaN/gamedev/009_projects/ggLib/assets",
+    "map.height": 15,
+    "map.lastUsedExportFilter": "All Files (*)",
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": "3",
+    "map.width": 20,
+    "openFiles": [
+        "map.tmx",
+        "tileset.tsx"
+    ],
+    "project": "demo.tiled-project",
+    "recentFiles": [
+        "map2.tmx",
+        "tileset.tsx",
+        "map.tmx"
+    ],
+    "resizeMap.removeObjects": false,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.margin": 2,
+    "tileset.spacing": 2
+}

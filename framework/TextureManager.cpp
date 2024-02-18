@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-12 13:41:59
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 15:04:17
+ * @Last Modified time: 2024-02-18 16:00:54
  */
 
 #include "TextureManager.h"
@@ -30,7 +30,7 @@ bool TextureManager::load(SDL_Renderer *renderer, std::string file, std::string 
   return true;
 }
 
-void TextureManager::draw(
+void TextureManager::render(
     SDL_Renderer *renderer, std::string id,
     int x, int y, int width, int height, int currRow, int currFrame,
     double angle, SDL_RendererFlip flip)
@@ -46,6 +46,25 @@ void TextureManager::draw(
   dstRect.h = srcRect.h = height;
 
   SDL_RenderCopyEx(renderer, m_texturesMap[id], &srcRect, &dstRect, angle, 0, flip);
+}
+
+void TextureManager::renderTile(
+    SDL_Renderer *renderer, std::string id,
+    int margin, int spacing,
+    int x, int y, int width, int height,
+    int currRow, int currFrame)
+{
+  SDL_Rect srcRect;
+  SDL_Rect dstRect;
+
+  srcRect.x = margin + ((spacing + width) * currFrame);
+  srcRect.y = margin + ((spacing + height) * currRow);
+  dstRect.x = x;
+  dstRect.y = y;
+  dstRect.w = srcRect.w = width;
+  dstRect.h = srcRect.h = height;
+
+  SDL_RenderCopyEx(renderer, m_texturesMap[id], &srcRect, &dstRect, 0, 0, SDL_FLIP_NONE);
 }
 
 void TextureManager::clearTexture(std::string id)

@@ -2,7 +2,7 @@
  * @Author: Hassen Rmili
  * @Date:   2024-02-17 11:05:47
  * @Last Modified by:   Hassen Rmili
- * @Last Modified time: 2024-02-17 14:22:34
+ * @Last Modified time: 2024-02-17 17:39:45
  */
 
 #include "ObjectFactory.h"
@@ -23,7 +23,7 @@ bool ObjectFactory::registerType(std::string typeId, BaseCreator *creator)
   return true;
 }
 
-Node *ObjectFactory::create(std::string typeId)
+Node *ObjectFactory::createType(std::string typeId)
 {
   std::map<std::string, BaseCreator *>::iterator it = m_creators.find(typeId);
 
